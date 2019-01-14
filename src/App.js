@@ -8,9 +8,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-	lists: [], // this holds the name of each list
-	items: {} // this property names of this object are the names of the lists; their values are arrays of the items in each list
+      lists: [], // this holds the name of each list
+      items: {} // this property names of this object are the names of the lists; their values are arrays of the items in each list
     };
+
   }
 
   /**
@@ -20,7 +21,14 @@ class App extends Component {
    * as the value put into the "lists" array. It should then re-render this App component.
    */
   handleAddList(s) {
-      // Implement this function!
+    // Implement this function!
+    let items = Object.assign({}, this.state.items);
+    items[s] = [];
+    this.setState({
+      lists: this.state.lists.concat([s]),
+      items: items
+    });
+
   }
 
   /**
@@ -31,8 +39,21 @@ class App extends Component {
    * to an array of the items in that list. After updating the "items" part of 
    * the state, this function  should then re-render this App component.
    */
-  handleAddItem(s) {
-      // Implement this function!
+  handleAddItem(item, s) {
+    // Implement this function!
+    let obj = {
+      name: item,
+    };
+    /*let items = Object.assign({}, this.state.items);
+      let currentar = items[s];
+      currentar.push(obj);
+    items[s] = currentar;*/
+    (this.state.items[s]).push(obj);
+    this.setState(
+      {
+        items: this.state.items,
+      }
+    );
   }
 
   /**
@@ -41,7 +62,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AddList addList={this.handleAddList.bind(this)} />
+        <AddList AddList={this.handleAddList.bind(this)} />
         <div id="listsDiv" className="List">
           <Lists lists={this.state.lists} items={this.state.items} addItem={this.handleAddItem.bind(this)} />
         </div>

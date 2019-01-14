@@ -13,18 +13,19 @@ class List extends Component {
       return (
         <div id={name} key={uuidv4()}>
           <h3>{name} List</h3>
-	<ul>
-          {items.map(function(item) {
-            return (
-		    <li key={uuidv4()}><ListItem item={item} key={uuidv4()} /></li>
-            )
-          })}
-	</ul>
-          <AddItem idName={name} addItem={this.props.addItem.bind(this)} />
+          <ul>
+            {items.map(function (item) {
+              return (
+                <li key={uuidv4()}><ListItem item={item} key={uuidv4()} /></li>
+              )
+            })}
+          </ul>
+          <AddItem idName={name} addItem={this.props.addItem} />
         </div>
       )
     }
     return (
+
       <div id={name} key={uuidv4()}>
         <h3>{name} List</h3>
         <AddItem idName={name} addItem={this.props.addItem.bind(this)} />
