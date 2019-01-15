@@ -9,7 +9,7 @@ class ListItem extends Component {
 
   handleClick() {
     this.setState({
-      color: 'grey'
+      color:  (this.state.color==='gray'?'black':'gray')
     });
   }
 
